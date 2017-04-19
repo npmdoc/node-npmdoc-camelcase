@@ -54,12 +54,66 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.camelcase">module camelcase</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.camelcase.camelcase">
+            function <span class="apidocSignatureSpan"></span>camelcase
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.camelcase" id="apidoc.module.camelcase">module camelcase</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.camelcase.camelcase" id="apidoc.element.camelcase.camelcase">
+        function <span class="apidocSignatureSpan"></span>camelcase
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">camelcase = function (str) {
+	if (arguments.length &gt; 1) {
+		str = Array.from(arguments)
+			.map(x =&gt; x.trim())
+			.filter(x =&gt; x.length)
+			.join('-');
+	} else {
+		str = str.trim();
+	}
+
+	if (str.length === 0) {
+		return '';
+	}
+
+	if (str.length === 1) {
+		return str.toLowerCase();
+	}
+
+	if (/^[a-z0-9]+$/.test(str)) {
+		return str;
+	}
+
+	const hasUpperCase = str !== str.toLowerCase();
+
+	if (hasUpperCase) {
+		str = preserveCamelCase(str);
+	}
+
+	return str
+		.replace(/^[_.\- ]+/, '')
+		.toLowerCase()
+		.replace(/[_.\- ]+(\w|$)/g, (m, p1) =&gt; p1.toUpperCase());
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
